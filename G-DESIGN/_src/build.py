@@ -347,17 +347,22 @@ def render(text):
         kw = {k: v.strip('"') for k, v in kw.items()}
         if name == "FONTS":
             return tok_fonts(kw["names"])
+        if name in ("GOTH", "GCHIP", "GTAB", "FLEURON"):
+            import gothic  # import tardif (gothic importe build)
+            return {"GOTH": gothic.tok_goth, "GCHIP": gothic.tok_gchip, "GTAB": gothic.tok_gtab, "FLEURON": gothic.tok_fleuron}[name](**kw)
         return TOKENS[name](**kw)
     return re.sub(r"\[\[([A-Z]+)((?:\s+\w+=(?:\"[^\"]*\"|[^\s\]]+))*)\s*\]\]", rep, text)
 
 
 def main():
-    OUT.mkdir(parents=True, exist_ok=True)
-    for src in sorted(SRC.glob("*.src.html")):
+    jobs = [(p, OUT) for p in sorted(SRC.glob("*.src.html"))]
+    jobs += [(p, SRC.parent / "planches" / "v2") for p in sorted((SRC / "v2").glob("*.src.html"))]
+    for src, out in jobs:
+        out.mkdir(parents=True, exist_ok=True)
         _uid[0] = 0
         html = render(src.read_text())
         assert "[[" not in html, f"jeton non remplace dans {src.name}"
-        dst = OUT / src.name.replace(".src.html", ".html")
+        dst = out / src.name.replace(".src.html", ".html")
         dst.write_text(html)
         print(f"{dst.relative_to(SRC.parent.parent)}  {len(html) // 1024} Ko")
 

@@ -2,6 +2,47 @@
 
 > Journal de design. Versions datées, jamais écrasées. Tenu par Claude (directeur artistique), à partir de `PROMPT-DESIGN.md`.
 
+## V2 — 2026-11-18 · Direction « Gothique » (3D, architecturale, lumière et matière)
+
+**Statut : en attente de validation de Gaia.**
+
+Retour de Gaia : « fais un style 3D, architectural et gothique, avec beaucoup plus de détails, et un travail minutieux des jeux de lumière et de matière ».
+Planche : `G-DESIGN/planches/v2/01-gothique.html`, page Jeu, avec les cadres desktop 1440 × 900 et mobile 390 × 844 et la bande d'états. Les planches V1 restent en archive.
+
+### Architecture
+- Baie en lancette dans un mur en appareil : joints de mortier avec arête claire, cordons horizontaux au niveau des chapiteaux et de l'appui.
+- Trois rouleaux d'archivolte modelés (ombre, corps, arête de lumière) séparés par des gorges profondes. Larmier terminé par deux culots en rosace.
+- Colonnettes : base à trois tores, fût avec bague, chapiteau à crochets, tailloir.
+- Appui en glacis avec ombre portée, plinthe, dallage en perspective vers un point de fuite.
+
+### Matière
+- Pierre : relief calculé par le navigateur (bruit et lumière diffuse venant du haut-gauche, `feDiffuseLighting`). Deux grains, un pour les parements, un plus fin pour les moulures.
+- Verre : dégradé d'épaisseur (centre clair, bords sombres), stries étirées, marbrures, bulles.
+- Grisaille peinte : nervures des pétales et des feuilles, losanges sur l'arc, mandorles sur les socles. Elle est visible, très pâle, sur le verre clair encore vide, si bien que le motif se lit avant toute couleur.
+- Plomb en profil H (ombre portée, corps, arête claire) avec soudures métalliques aux nœuds.
+
+### Lumière
+- La nef est sombre (vignettage fort) et la baie est la seule source.
+- Halo de lumière transmise autour du verre posé et rebond coloré sur les archivoltes et le mur.
+- Faisceaux volumétriques du vitrail vers le sol, teintés par les pièces qu'ils traversent, avec de la poussière en suspension.
+- **Le vitrail se projette sur le dallage** (miroir, cisaillé) : la projection change à chaque pièce posée. C'est un retour visuel du jeu, pas seulement un décor.
+- Le faisceau de la règle II garde ses repères sur le verre.
+
+### Interface
+- Deux plaques de pierre gravées à sommet en arc brisé, cernées d'un filet doré : à gauche le titre et les règles, à droite la série, le chrono, les pièces et le bouton.
+- Titre en lettres dorées (Noto Serif Display italique), chiffres romains dorés, texte gravé.
+- Les pièces reposent sur une corniche et projettent sur la pierre une ombre de leur couleur.
+- Bouton à l'état « prêt » en plaque dorée biseautée.
+- Le compteur communautaire est gravé dans une dalle du sol, en perspective.
+- Accent unique : l'or. Le rouge d'erreur sert seulement à la contrainte cassée.
+
+### Outil
+`G-DESIGN/_src/gothic.py` (scène, plaques, éclats, fleuron), branché sur `build.py`. La source est `_src/v2/01-gothique.src.html`. Le fichier généré pèse ~370 Ko, polices comprises, et ne fait aucune requête réseau.
+
+### Points à surveiller
+- Coût de rendu : les filtres de relief sont lourds. En production, il faudra une image pré-rendue de l'architecture et garder en direct seulement le verre, la projection et les faisceaux.
+- Le faisceau principal passe devant les cases du bas : elles restent lisibles, à vérifier en jeu.
+
 ## V1 — 2026-11-18 · Exploration de la page principale (« Jeu »)
 
 **Statut : en attente de validation de Gaia (étape B du process, on s'arrête ici).**
