@@ -2,6 +2,15 @@
 
 > Journal de design. Versions datées, jamais écrasées. Tenu par Claude (directeur artistique), à partir de `PROMPT-DESIGN.md`.
 
+## LOCK — 2026-11-18 · Style verrouillé
+
+Gaia a validé les quatre planches et lancé `/lock`. **Fin des explorations.**
+- Seule référence pour l'implémentation : `G-DESIGN/STYLE.md` + `G-DESIGN/planches/v2/` (01-gothique = Jeu, 02-post, 03-carte-de-fin, 04-series-classement), en desktop 1440 × 900 et mobile 390 × 844.
+- Les planches V1 (Nef, Atelier, Nocturne) restent en archive et ne servent plus de référence.
+- Toute évolution passe par un `/delta` daté ici, sans nouvelle direction.
+- À trancher côté produit avant le code : les questions 1 à 4 et les hypothèses 5 à 8 de `G-DESIGN/PAGES.md`, en particulier la mécanique exacte (cases fixes où l'on choisit le verre, ou pièces à emboîter) et la mesure du résultat (temps, essais).
+- Note pour l'implémentation : pré-rendre l'architecture et la pierre en images (les filtres de relief sont trop lourds en direct). Seuls le verre, la projection au sol et les faisceaux restent calculés. Polices OFL à embarquer (CSP Devvit).
+
 ## V3 — 2026-11-18 · Étape C : style formalisé + déclinaison
 
 Gaia a validé le style V2 Gothique (« Oui, étape C »).

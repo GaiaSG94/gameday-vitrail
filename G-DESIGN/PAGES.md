@@ -4,10 +4,10 @@
 
 | # | Page | Rôle | Contenu clé | Statut |
 |---|---|---|---|---|
-| 1 | **Post** | Donner envie depuis le feed, en 5 secondes | En-tête du post, vitrail du jour éteint (silhouette en plomb), motif du jour, nombre de vitraux allumés aujourd'hui, série du joueur, bouton « Start » | en revue (V2 · `planches/v2/02-post.html`) |
+| 1 | **Post** | Donner envie depuis le feed, en 5 secondes | En-tête du post, vitrail du jour éteint (silhouette en plomb), motif du jour, nombre de vitraux allumés aujourd'hui, série du joueur, bouton « Start » | **validée (V2 · `planches/v2/02-post.html`)** |
 | 2 | **Jeu** *(page principale)* | Poser les 8 pièces de verre en respectant les contraintes de lumière | Vitrail du jour (8 cases sous plomb), 8 pièces (2 par verre), 3 contraintes de lumière avec leur état, faisceau de soleil, bouton « Let the light in » | **validée (V2 Gothique · `planches/v2/01-gothique.html`)** |
-| 3 | **Carte de fin** | Récompenser : le vitrail terminé s'allume | Vitrail allumé, résultat (temps), série, rang du jour, invitation à commenter en un geste, compte à rebours avant le prochain vitrail | en revue (V2 · `planches/v2/03-carte-de-fin.html`) |
-| 4 | **Séries & classement** | Faire revenir demain | Série en cours et record, calendrier des vitraux du mois, classement du jour, chiffres de la communauté | en revue (V2 · `planches/v2/04-series-classement.html`) |
+| 3 | **Carte de fin** | Récompenser : le vitrail terminé s'allume | Vitrail allumé, résultat (temps), série, rang du jour, invitation à commenter en un geste, compte à rebours avant le prochain vitrail | **validée (V2 · `planches/v2/03-carte-de-fin.html`)** |
+| 4 | **Séries & classement** | Faire revenir demain | Série en cours et record, calendrier des vitraux du mois, classement du jour, chiffres de la communauté | **validée (V2 · `planches/v2/04-series-classement.html`)** |
 
 Pas d'autre page : pas de tutoriel séparé (règle lisible sur l'écran Jeu, critère « lisible en 5 secondes »), pas d'écran de réglages (non prévu dans `IDEE.md`).
 
