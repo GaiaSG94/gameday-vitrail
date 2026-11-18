@@ -1,0 +1,94 @@
+:root{
+  --nave:#0d0c0a; --gold:#d8b26a; --gold-hi:#f2d593; --gold-lo:#9c7330;
+  --parch:#ebe1cd; --muted:#a39780; --dim:#6f6555; --err:#ff5a4e;
+  --ruby:#a3112b; --cobalt:#1b42b8; --emerald:#0b7d55; --amber:#dc8c0c;
+  --serif:'Noto Serif Display',Georgia,serif; --sans:Inter,system-ui,sans-serif;
+}
+body{background:#080706;color:var(--parch);font-family:var(--sans)}
+.bh h1{font-family:var(--serif);font-weight:400;font-size:40px;letter-spacing:.01em}
+.bh h1 i{color:var(--gold)}
+.nave{position:relative;overflow:hidden;background:var(--nave)}
+.goth{position:absolute;left:0;top:0;display:block}
+.st .goth{position:static}
+/* plaques gravees */
+.tab{position:absolute}
+.tab .tabbg{position:absolute;left:-6px;top:-6px}
+.tab .in{position:relative;height:100%;display:flex;flex-direction:column}
+.sc{font:600 10.5px/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.9}
+.gild{font-family:var(--serif);font-style:italic;font-weight:400;line-height:.95;letter-spacing:-.01em;
+  background:linear-gradient(175deg,#fbe7b4 0%,#e2bd72 38%,#a8782f 62%,#f0d18e 80%,#b98a3c 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.9)) drop-shadow(0 -1px 0 rgba(255,236,190,.15))}
+.eng{color:#cfc4ae;text-shadow:0 -1px 0 rgba(0,0,0,.85),0 1px 0 rgba(255,240,210,.10)}
+.rule{display:grid;grid-template-columns:28px 1fr;gap:3px 10px;padding:10px 0;border-top:1px solid rgba(0,0,0,.6);box-shadow:inset 0 1px 0 rgba(255,236,200,.06)}
+.rule .n{font:400 19px/1.1 var(--serif);color:var(--gold);grid-row:span 2;text-align:center}
+.rule p{font-size:13px;line-height:1.42}
+.sw{display:inline-block;width:9px;height:9px;transform:rotate(45deg);margin:0 4px 1px 2px;vertical-align:middle;box-shadow:0 0 0 1.5px #0b0a08,0 0 8px currentColor}
+.stt{font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.stt.ok{color:var(--gold-hi)} .stt.ok::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--gold-hi);box-shadow:0 0 8px var(--gold)}
+.stt.wait{color:var(--muted)} .stt.wait::before{content:"";width:5px;height:5px;transform:rotate(45deg);border:1.2px solid var(--muted)}
+.stt.bad{color:var(--err)} .stt.bad::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--err)}
+.trk{display:inline-flex;gap:3px;margin-left:2px}.trk i{width:12px;height:3px;background:#3d372d}.trk i.on{background:var(--gold-hi);box-shadow:0 0 6px var(--gold)}
+/* corniche aux pieces */
+.ledge{position:relative;padding:14px 8px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.ledge::after{content:"";position:absolute;left:-4px;right:-4px;bottom:-12px;height:14px;
+  background:linear-gradient(#8a8270,#5a5446 40%,#2e2a23);box-shadow:0 1px 0 rgba(255,240,210,.35) inset,0 10px 18px -4px #000}
+.pc{display:flex;flex-direction:column;align-items:center;gap:6px;padding-bottom:16px;position:relative;z-index:1}
+.pc .nm{white-space:nowrap;font:600 9px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pc.held .nm{color:var(--gold-hi)}
+.pc.held::before{content:"";position:absolute;inset:-6px -2px 8px;border:1px solid rgba(242,213,147,.65);box-shadow:0 0 22px -6px rgba(242,213,147,.55),inset 0 0 18px -8px rgba(242,213,147,.5)}
+.pc.gone .nm{color:var(--dim)}
+.btn{position:relative;padding:0 30px;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:10px;height:52px;width:100%;
+  font:500 15px/1 var(--serif);letter-spacing:.12em;text-transform:uppercase}
+.btn.off{color:#8e8167;border:1px solid rgba(216,178,106,.28);box-shadow:inset 0 1px 0 rgba(0,0,0,.7),inset 0 -1px 0 rgba(255,236,200,.06);background:rgba(0,0,0,.25)}
+.btn.on{color:#2a1d0a;background:linear-gradient(#f6dc9d,#d6aa55 48%,#a87a2f 52%,#d9b062);
+  box-shadow:inset 0 1px 0 rgba(255,250,230,.8),inset 0 -2px 0 rgba(80,50,10,.5),0 0 0 1px #3a2a10,0 10px 34px -6px rgba(242,213,147,.55)}
+.btn.press{color:#2a1d0a;background:linear-gradient(#c99b4a,#b88b3e);transform:translateY(2px);box-shadow:inset 0 2px 6px rgba(60,35,5,.6),0 0 0 1px #3a2a10}
+.btn.bad{color:var(--err);border:1px solid rgba(255,90,78,.6);background:rgba(60,8,4,.35)}
+.btn.off::before,.btn.off::after,.btn.on::before,.btn.on::after{content:"";position:absolute;top:50%;width:6px;height:6px;transform:translateY(-50%) rotate(45deg);background:currentColor;opacity:.6}
+.btn::before{left:14px}.btn::after{right:14px}
+.btn.sm::before,.btn.sm::after{display:none}
+.btn.sm{padding:0 14px;letter-spacing:.08em}
+.hint{font-size:12.5px;line-height:1.5;color:var(--muted)}.hint b{color:var(--parch);font-weight:600}
+/* inscription au sol, en perspective */
+.floorins{position:absolute;transform-origin:50% 100%;transform:perspective(520px) rotateX(58deg);
+  font:500 19px/1 var(--serif);letter-spacing:.32em;text-transform:uppercase;color:rgba(216,178,106,.55);white-space:nowrap;
+  text-shadow:0 -1px 0 rgba(0,0,0,.9),0 1px 0 rgba(255,236,200,.12)}
+.floorins b{font-weight:500;color:var(--gold-hi)}
+
+/* ---- composants partages etape C ---- */
+.big{font:400 76px/.8 var(--serif);font-variant-numeric:lining-nums}
+.stat{display:flex;flex-direction:column;gap:6px}
+.stat .v{font:400 30px/1 var(--serif);font-variant-numeric:lining-nums tabular-nums}
+.sep{height:1px;background:rgba(0,0,0,.6);box-shadow:0 1px 0 rgba(255,236,200,.06)}
+.lnk{font:600 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px}
+.lnk::after{content:"";width:5px;height:5px;border-top:1.4px solid currentColor;border-right:1.4px solid currentColor;transform:rotate(45deg)}
+.quote{font:400 italic 15px/1.45 var(--serif);color:#d9cdb4;padding:10px 14px;border-left:2px solid rgba(216,178,106,.55);background:rgba(0,0,0,.28)}
+.chipline{display:inline-flex;gap:4px;vertical-align:middle}
+.chipline i{width:9px;height:9px;transform:rotate(45deg);box-shadow:0 0 0 1px #0b0a08,0 0 6px currentColor}
+.toast{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#2a1d0a;
+  background:linear-gradient(#f6dc9d,#d6aa55);box-shadow:inset 0 1px 0 rgba(255,250,230,.8),0 0 0 1px #3a2a10,0 12px 30px -10px #000}
+.tabs{display:flex;gap:18px;border-bottom:1px solid rgba(0,0,0,.6);box-shadow:0 1px 0 rgba(255,236,200,.06)}
+.tabs span{font:600 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding:0 0 10px}
+.tabs span.on{color:var(--gold-hi);box-shadow:inset 0 -2px 0 var(--gold)}
+.lb{display:flex;flex-direction:column}
+.lb .r{display:grid;grid-template-columns:44px 1fr auto;align-items:center;padding:8px 6px;border-bottom:1px solid rgba(0,0,0,.45);font-size:13px}
+.lb .r .k{font:400 15px/1 var(--serif);color:var(--muted);font-variant-numeric:lining-nums tabular-nums}
+.lb .r .t{font:500 13px/1 var(--sans);font-variant-numeric:tabular-nums;color:#d9cdb4}
+.lb .r.top .k{color:var(--gold-hi)}
+.lb .r.me{background:linear-gradient(90deg,rgba(216,178,106,.18),rgba(216,178,106,.04));box-shadow:inset 2px 0 0 var(--gold)}
+.lb .r.me .k,.lb .r.me .t{color:var(--gold-hi)}
+.lb .gap{text-align:center;color:var(--dim);font:400 14px/1 var(--serif);letter-spacing:.4em;padding:6px 0}
+.cd{font:400 26px/1 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:#cfc4ae;letter-spacing:.04em}
+
+/* calendrier en mini-lancettes */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px 4px;justify-items:center}
+.cal-h{font:600 9.5px/1 var(--sans);letter-spacing:.16em;color:var(--dim);padding-bottom:4px}
+.cal-d{display:flex;flex-direction:column;align-items:center;gap:3px}
+.cal-d i{font:400 11px/1 var(--serif);font-style:normal;color:var(--muted);font-variant-numeric:lining-nums}
+.cal-d.lit .mini{filter:drop-shadow(0 0 5px rgba(242,213,147,.35))}
+.cal-d.today .mini{filter:drop-shadow(0 0 10px rgba(242,213,147,.75))}
+.cal-d.today i{color:var(--gold-hi);font-weight:600}
+.cal-d.missed .mini{opacity:.75}
+.cal-d.missed i,.cal-d.future i{color:var(--dim)}
+.cal-d.future:first-of-type{grid-column-start:1}

@@ -7,7 +7,9 @@ Le vitrail reprend la geometrie et la solution de build.py (memes 8 cases).
 """
 import random
 
-from build import CELLS, STATES, BEAM_MARKS
+from build import CELLS, STATES, BEAM_MARKS, SOLUTION
+
+SOLUTION_VALUES = [SOLUTION[k] for k in "ABCDEFGH"]
 
 TINTS = dict(ruby="#a3112b", cobalt="#1b42b8", emerald="#0b7d55", amber="#dc8c0c")
 STONE = "#77705f"
@@ -516,3 +518,67 @@ def tok_fleuron(w="200"):
             f'<circle cx="{m - 5:.1f}" cy="9" r="4.2"/><circle cx="{m + 5:.1f}" cy="9" r="4.2"/>'
             f'<circle cx="{m:.1f}" cy="4" r="4.2"/><circle cx="{m:.1f}" cy="14" r="4.2"/></g>'
             f'<circle cx="{m:.1f}" cy="9" r="1.6" fill="{GOLD}"/></svg>')
+
+
+def tok_mini(state="lit", seed="1", w="34"):
+    """Petite lancette du calendrier : un vitrail par jour (lit / today / missed / future)."""
+    W = float(w)
+    H = W * 560 / 330
+    vb = "-15 -20 330 560"
+    if state == "future":
+        return (f'<svg class="mini" viewBox="{vb}" width="{W:.0f}" height="{H:.0f}">'
+                f'<path d="{lancet()}" fill="rgba(0,0,0,.35)" stroke="{GOLD}" stroke-opacity=".28" stroke-width="7" stroke-dasharray="14 12"/></svg>')
+    rnd = random.Random(int(seed) * 7919)
+    if state in ("lit", "today"):
+        cols = list(SOLUTION_VALUES)
+        if state == "lit":
+            rnd.shuffle(cols)
+        fills = dict(zip("ABCDEFGH", cols))
+    else:
+        fills = {}
+    o = [f'<svg class="mini {state}" viewBox="{vb}" width="{W:.0f}" height="{H:.0f}" style="overflow:visible">']
+    o.append(f'<path d="{lancet()}" fill="#15171b"/>')
+    for k, poly in CELLS.items():
+        if k in fills:
+            c = TINTS[fills[k]]
+            o.append(f'<polygon points="{pts(poly)}" fill="{mix(c, "#fff3d6", .12)}" clip-path="url(#mlc)"/>')
+    o.append('<g clip-path="url(#mlc)" fill="none" stroke="#0e0f12" stroke-width="12" stroke-linejoin="round">')
+    o.append("".join(f'<polygon points="{pts(p)}"/>' for p in CELLS.values()))
+    o.append("</g>")
+    if fills:
+        o.append(f'<path d="{lancet()}" fill="url(#mgl)" opacity=".55"/>')
+    o.append(f'<path d="{lancet()}" fill="none" stroke="#0b0a08" stroke-width="16"/>')
+    if state == "today":
+        o.append(f'<path d="{lancet(-30)}" fill="none" stroke="{GOLD}" stroke-width="18"/>')
+    o.append("</svg>")
+    return "".join(o)
+
+
+def tok_minidefs():
+    """Definitions partagees par toutes les mini-lancettes de la page (a inclure une fois)."""
+    return ('<svg width="0" height="0" style="position:absolute"><defs>'
+            f'<clipPath id="mlc"><path d="{lancet()}"/></clipPath>'
+            '<linearGradient id="mgl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/>'
+            '<stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>'
+            '</defs></svg>')
+
+
+MISSED = {3, 6, 9, 11}
+TODAY = 18
+
+
+def tok_cal(w="30", num="11"):
+    """Calendrier de novembre 2026 (1er = dimanche) en mini-lancettes."""
+    head = "".join(f'<span class="cal-h">{d}</span>' for d in "SMTWTFS")
+    cells = []
+    for day in range(1, 31):
+        if day == TODAY:
+            st = "today"
+        elif day > TODAY:
+            st = "future"
+        elif day in MISSED:
+            st = "missed"
+        else:
+            st = "lit"
+        cells.append(f'<span class="cal-d {st}">{tok_mini(st, str(day), w)}<i style="font-size:{num}px">{day}</i></span>')
+    return f'<div class="cal">{head}{"".join(cells)}</div>'

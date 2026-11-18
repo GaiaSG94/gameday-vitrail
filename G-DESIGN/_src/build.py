@@ -347,9 +347,12 @@ def render(text):
         kw = {k: v.strip('"') for k, v in kw.items()}
         if name == "FONTS":
             return tok_fonts(kw["names"])
-        if name in ("GOTH", "GCHIP", "GTAB", "FLEURON"):
+        if name == "GCSS":
+            return (SRC / "v2" / "gothic.css").read_text()
+        if name in ("GOTH", "GCHIP", "GTAB", "FLEURON", "MINI", "MINIDEFS", "CAL"):
             import gothic  # import tardif (gothic importe build)
-            return {"GOTH": gothic.tok_goth, "GCHIP": gothic.tok_gchip, "GTAB": gothic.tok_gtab, "FLEURON": gothic.tok_fleuron}[name](**kw)
+            return {"GOTH": gothic.tok_goth, "GCHIP": gothic.tok_gchip, "GTAB": gothic.tok_gtab, "FLEURON": gothic.tok_fleuron,
+                    "MINI": gothic.tok_mini, "MINIDEFS": gothic.tok_minidefs, "CAL": gothic.tok_cal}[name](**kw)
         return TOKENS[name](**kw)
     return re.sub(r"\[\[([A-Z]+)((?:\s+\w+=(?:\"[^\"]*\"|[^\s\]]+))*)\s*\]\]", rep, text)
 

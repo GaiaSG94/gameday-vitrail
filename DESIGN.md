@@ -2,6 +2,21 @@
 
 > Journal de design. Versions datées, jamais écrasées. Tenu par Claude (directeur artistique), à partir de `PROMPT-DESIGN.md`.
 
+## V3 — 2026-11-18 · Étape C : style formalisé + déclinaison
+
+Gaia a validé le style V2 Gothique (« Oui, étape C »).
+
+- `G-DESIGN/STYLE.md` : principe, palette (hex), typo, grille (desktop, inline, mobile), composants, mouvement, règles d'états, interdits.
+- La CSS est maintenant unique : `G-DESIGN/_src/v2/gothic.css`, partagée par les quatre planches V2 via le jeton `[[GCSS]]`. Nouveaux jetons : `MINI` (mini-lancette d'un jour), `MINIDEFS`, `CAL` (calendrier du mois).
+- Planches V2, chacune avec les cadres desktop 1440 × 900 et mobile 390 × 844 et une bande d'états :
+  - `planches/v2/01-gothique.html` : Jeu (validé en V2, inchangé sauf la date).
+  - `planches/v2/02-post.html` : le post dans le feed (inline 720 × 420). Baie éteinte, grisaille pâle, titre doré, série 6, 2,841 allumés, « Light the window ». États : à jouer, en cours (reprise), déjà allumé (compte à rebours).
+  - `planches/v2/03-carte-de-fin.html` : baie embrasée, projection complète au sol, temps 2:31, #312 sur 2,842, 89 %, série 7 (+1), « Which pane fought you hardest? », bouton Comment, ligne sans spoiler, prochain vitrail dans 09:14:22. États : commentaire prêt, appuyé, posté ; copie ; série +1 ou reprise ; compte à rebours.
+  - `planches/v2/04-series-classement.html` : série 7 (record), 14 / 18 en novembre, calendrier en mini-lancettes (allumé, aujourd'hui, manqué, à venir), classement du jour centré sur ma ligne, onglet séries, chiffres de la nef, « Post your time ». États : jours, onglets, pas encore joué.
+- `G-DESIGN/PAGES.md` : statuts mis à jour (Jeu validée, les trois autres en revue) et hypothèses 5 à 8 ajoutées.
+
+**Correction :** le 18 novembre 2026 est un **mercredi**. Les planches V1 et V2 disaient « Tuesday » : corrigé dans toutes les sources (« Wednesday », « Wed 18 Nov »). Les entrées V1 et V2 de ce journal gardent l'erreur, puisqu'on n'y réécrit pas.
+
 ## V2 — 2026-11-18 · Direction « Gothique » (3D, architecturale, lumière et matière)
 
 **Statut : en attente de validation de Gaia.**
