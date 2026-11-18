@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrail · V2 · Post</title>
+<style>
+[[FONTS names=nsd,nsdi,inter,jbm]]
+[[BASECSS]]
+[[GCSS]]
+/* carte du post dans le feed (habillage neutre) */
+.pcard{position:absolute;background:#0f1012;border-radius:14px;padding:14px 16px 12px;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
+.pcard .ph{display:flex;align-items:center;gap:8px;font:400 12px/1 Inter,system-ui,sans-serif;color:#8b8a87}
+.pcard .ph i{width:22px;height:22px;border-radius:50%;background:rgba(127,127,127,.4)}
+.pcard .ph b{color:#d0cecb;font-weight:600}
+.pcard .pt{font:600 18px/1.3 Inter,system-ui,sans-serif;color:#e6e4e0;margin:10px 0 12px}
+.pcard .pf{display:flex;gap:10px;margin-top:12px}
+.pcard .pf b{height:30px;border-radius:15px;background:rgba(127,127,127,.14);display:block}
+.inl{position:relative;overflow:hidden;border-radius:10px;background:var(--nave)}
+.inl .ov{position:absolute;inset:0}
+/* desktop inline 720 x 420 */
+.di-l{position:absolute;left:30px;top:44px;width:230px}
+.di-r{position:absolute;right:30px;top:44px;width:220px;text-align:right}
+.di-r .btn{margin-top:22px}
+.mini-meta{display:flex;gap:16px;align-items:baseline}
+/* etats */
+.sx{position:relative;width:480px;height:280px;overflow:hidden;border-radius:10px;background:var(--nave)}
+.sx .ov{position:absolute;inset:0;padding:22px}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="bh">
+    <div>
+      <h1>Vitrail — V2 · <i style="color:var(--gold)">Post</i></h1>
+      <p>Le post tel qu'il apparaît dans le feed, avant de l'ouvrir. La baie du jour est éteinte : verre clair, grisaille pâle, faisceau qui attend. Le motif se lit sans couleur, et la couleur reste la récompense. Un titre doré, la série du joueur, le compteur du jour, un seul bouton.</p>
+    </div>
+    <div class="meta">PAGE POST · VUE INLINE DANS LE FEED<br>ÉTAT : À JOUER · SÉRIE 6<br>V2 · ÉTAPE C · 2026-11-18</div>
+  </div>
+
+  <div class="frames">
+    <div>
+      <div class="flabel">Desktop 1440 × 900 — feed, post en ligne</div>
+      <div class="fd">
+        [[FEED theme=dark]]
+        <div class="pcard" style="left:372px;top:74px;width:752px">
+          <div class="ph"><i></i><b>r/vitrail</b><span>· 3 h</span></div>
+          <div class="pt">Window Nº 23 — The Lily</div>
+          <div class="inl" style="width:720px;height:420px">
+            [[GOTH w=720 h=420 gx=295 gy=82 gw=130 fy=334 state=empty beam=1 marks=0 motes=45 projx=10 seed=31]]
+            <div class="ov">
+              <div class="di-l">
+                <div class="sc">Window Nº 23 · Wed 18 Nov</div>
+                <div class="gild" style="font-size:50px;margin:12px 0 14px">The Lily</div>
+                <p class="eng" style="font-size:14px;line-height:1.45">Eight panes of glass.<br>Three rules of light.<br>One window a day.</p>
+                <div style="margin-top:18px">[[FLEURON w=150]]</div>
+                <div class="sc" style="margin-top:12px;color:var(--muted)"><span class="eng" style="font:400 18px/1 var(--serif);letter-spacing:0;text-transform:none">2,841</span>&nbsp; lit today</div>
+              </div>
+              <div class="di-r">
+                <div class="gild big">6</div>
+                <div class="sc" style="margin-top:8px">Day streak</div>
+                <p class="hint" style="margin-top:6px">Light today's window to make it 7.</p>
+                <div class="btn on" style="font-size:13px;letter-spacing:.08em;padding:0 28px">Light the window</div>
+                <div class="sc" style="margin-top:12px;color:var(--muted);font-size:9.5px">About 2 minutes</div>
+              </div>
+            </div>
+          </div>
+          <div class="pf"><b style="width:96px"></b><b style="width:72px"></b><b style="width:72px"></b></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flabel">Mobile 390 × 844 — feed, post en ligne</div>
+      <div class="fm" style="background:#0f1012">
+        <div class="mst mst-dark"><span>9:41</span><span class="mst-r"><i></i><i></i><i></i></span></div>
+        <div style="height:52px;display:flex;align-items:center;gap:12px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,.07)">
+          <i style="width:30px;height:30px;border-radius:50%;background:rgba(127,127,127,.3)"></i>
+          <b style="width:180px;height:30px;border-radius:15px;background:rgba(127,127,127,.15)"></b>
+          <span style="margin-left:auto;display:flex;gap:10px"><i style="width:26px;height:26px;border-radius:50%;background:rgba(127,127,127,.22)"></i><i style="width:26px;height:26px;border-radius:50%;background:rgba(127,127,127,.22)"></i></span>
+        </div>
+        <div class="pcard" style="position:relative;border-radius:0;box-shadow:none;padding:12px 0 10px">
+          <div class="ph" style="padding:0 14px"><i></i><b>r/vitrail</b><span>· 3 h</span></div>
+          <div class="pt" style="padding:0 14px;font-size:16px">Window Nº 23 — The Lily</div>
+          <div class="inl" style="width:390px;height:440px;border-radius:0">
+            [[GOTH w=390 h=440 gx=135 gy=74 gw=120 fy=326 state=empty beam=1 marks=0 motes=30 projx=4 seed=32]]
+            <div class="ov">
+              <div style="position:absolute;left:16px;top:14px"><div class="sc" style="font-size:9.5px">Nº 23 · Wed 18 Nov</div></div>
+              <div style="position:absolute;right:16px;top:10px;text-align:right"><div class="gild" style="font:400 34px/.8 var(--serif)">6</div><div class="sc" style="font-size:9px;margin-top:4px">Streak</div></div>
+              <div style="position:absolute;left:16px;right:16px;bottom:16px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px">
+                  <div class="gild" style="font-size:38px">The Lily</div>
+                  <div class="sc" style="color:var(--muted);text-align:right;font-size:9.5px"><span class="eng" style="font:400 16px/1 var(--serif);letter-spacing:0">2,841</span><br>lit today</div>
+                </div>
+                <div class="btn on" style="height:48px;font-size:14px">Light the window</div>
+              </div>
+            </div>
+          </div>
+          <div class="pf" style="padding:0 14px"><b style="width:86px"></b><b style="width:64px"></b><b style="width:64px"></b></div>
+        </div>
+        <div style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <b style="display:block;width:160px;height:10px;border-radius:5px;background:rgba(127,127,127,.25)"></b>
+          <b style="display:block;width:300px;height:14px;border-radius:5px;background:rgba(127,127,127,.2)"></b>
+          <b style="display:block;height:120px;border-radius:10px;background:rgba(127,127,127,.12)"></b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="states">
+    <h2>États du post (vue inline)</h2>
+    <div class="srow">
+      <div class="st" style="background:#14120f;padding:14px">
+        <div class="sx">
+          [[GOTH w=480 h=280 gx=200 gy=58 gw=80 fy=222 state=empty marks=0 motes=20 seed=41]]
+          <div class="ov">
+            <div class="sc" style="font-size:9.5px">Nº 23</div>
+            <div class="gild" style="font-size:30px;margin-top:6px">The Lily</div>
+            <div style="position:absolute;right:22px;bottom:22px;width:170px"><div class="btn on sm" style="height:40px;font-size:11px">Light the window</div></div>
+          </div>
+        </div>
+        <span class="cap">À jouer : baie éteinte, bouton doré</span>
+      </div>
+      <div class="st" style="background:#14120f;padding:14px">
+        <div class="sx">
+          [[GOTH w=480 h=280 gx=200 gy=58 gw=80 fy=222 state=play marks=0 motes=20 seed=42]]
+          <div class="ov">
+            <div class="sc" style="font-size:9.5px">Nº 23 · in progress</div>
+            <div class="gild" style="font-size:30px;margin-top:6px">The Lily</div>
+            <p class="eng" style="font-size:12px;margin-top:8px">5 of 8 panes set<br>01:12 on the clock</p>
+            <div style="position:absolute;right:22px;bottom:22px;width:150px"><div class="btn on sm" style="height:40px;font-size:11px">Resume</div></div>
+          </div>
+        </div>
+        <span class="cap">En cours : la baie montre les pièces déjà posées</span>
+      </div>
+      <div class="st" style="background:#14120f;padding:14px">
+        <div class="sx">
+          [[GOTH w=480 h=280 gx=200 gy=58 gw=80 fy=222 state=done marks=0 motes=24 seed=43]]
+          <div class="ov">
+            <div class="sc" style="font-size:9.5px">Nº 23 · lit</div>
+            <div class="gild" style="font-size:30px;margin-top:6px">The Lily</div>
+            <p class="eng" style="font-size:12px;margin-top:8px">Lit in 2:31 · #312<br>Streak 7</p>
+            <div style="position:absolute;right:22px;bottom:20px;text-align:right"><div class="sc" style="font-size:9px;color:var(--muted)">Next window in</div><div class="cd" style="font-size:20px;margin-top:4px">09:14:22</div></div>
+          </div>
+        </div>
+        <span class="cap">Déjà allumé : la baie reste allumée, compte à rebours</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

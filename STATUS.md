@@ -15,3 +15,4 @@ Idees validees par H le 2026-11-17 (30/30) : passage en phase build.
 (dossier cree automatiquement, aucune tache encore lancee)
 
 ## Claude
+- 2026-11-18 : design verrouillé (/lock). Style V2 Gothique ; référence : `G-DESIGN/STYLE.md` + `G-DESIGN/planches/v2/` (4 pages). Branche `design/v1-planches`. Questions produit ouvertes dans `G-DESIGN/PAGES.md`.
