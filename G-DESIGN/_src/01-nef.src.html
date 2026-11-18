@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrail · V1 · 01 Nef</title>
+<style>
+[[FONTS names=inter,jbm,nsd,nsdi]]
+[[BASECSS]]
+:root{
+  --charbon:#14161a; --plomb:#2b2f36; --plomb-hi:#4b515b;
+  --ruby:#b3122e; --cobalt:#1f4fd1; --emerald:#0f8a5f; --amber:#e89a14;
+  --light:#f4d58d;           /* seule couleur d'accent : la lumiere */
+  --txt:#ece6da; --txt-2:#9a958c; --txt-3:#6b6862; --err:#ff5a4e;
+  --serif:'Noto Serif Display',Georgia,serif; --sans:Inter,system-ui,sans-serif;
+}
+body{background:#0a0b0d;color:var(--txt);font-family:var(--sans)}
+.bh h1{font-family:var(--serif);font-weight:400;font-size:38px}
+/* ------------------------------------------------ scene */
+.nef{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 50% 18%,#1b1e24 0%,var(--charbon) 55%,#0e0f12 100%);color:var(--txt)}
+.nef::before{content:"";position:absolute;width:240px;height:1900px;left:300px;top:-520px;transform:rotate(-39deg);
+  background:linear-gradient(90deg,transparent,rgba(255,240,205,.075) 35%,rgba(255,240,205,.11) 50%,rgba(255,240,205,.075) 65%,transparent);pointer-events:none}
+.pool{position:absolute;border-radius:50%;filter:blur(38px);opacity:.33;pointer-events:none}
+.k{font:600 11px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--txt-2)}
+.ttl{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;color:var(--txt)}
+.ttl i{font-style:italic}
+.rule{display:grid;grid-template-columns:30px 1fr;gap:4px 12px;padding:16px 0;border-top:1px solid var(--plomb)}
+.rule:last-child{border-bottom:1px solid var(--plomb)}
+.rule .n{font:400 20px/1.1 var(--serif);color:var(--txt-2);grid-row:span 2}
+.rule p{font-size:15px;line-height:1.45;color:var(--txt)}
+.rule p b{font-weight:600}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;transform:rotate(45deg);margin:0 3px 1px 1px;vertical-align:middle;box-shadow:0 0 0 1.5px var(--charbon),0 0 0 2.5px var(--plomb-hi)}
+.stt{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:7px}
+.stt.ok{color:var(--light)} .stt.ok::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--light);box-shadow:0 0 10px var(--light)}
+.stt.wait{color:var(--txt-2)} .stt.wait::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid var(--txt-2)}
+.stt.bad{color:var(--err)} .stt.bad::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--err)}
+.beamtrack{display:inline-flex;gap:3px;margin-left:4px}
+.beamtrack i{width:14px;height:4px;border-radius:2px;background:var(--plomb-hi)}
+.beamtrack i.on{background:var(--light);box-shadow:0 0 8px rgba(244,213,141,.6)}
+/* bac de verre */
+.tray{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.slot{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 0 10px;border-radius:10px;background:rgba(255,255,255,.025);box-shadow:inset 0 0 0 1px var(--plomb)}
+.slot .nm{font:600 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--txt-2)}
+.slot .ct{font:500 11px/1 var(--sans);color:var(--txt-3)}
+.slot.held{background:rgba(244,213,141,.06);box-shadow:inset 0 0 0 1.5px var(--light),0 12px 30px -10px rgba(15,138,95,.55);transform:translateY(-6px)}
+.slot.held .nm{color:var(--light)}
+.slot.held .chip{transform:rotate(-8deg) scale(1.06)}
+.slot.gone .nm{color:var(--txt-3)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;border-radius:27px;font:600 15px/1 var(--sans);letter-spacing:.01em;width:100%}
+.btn.off{background:transparent;color:var(--txt-2);box-shadow:inset 0 0 0 1.5px var(--plomb-hi)}
+.btn.on{background:var(--light);color:#1a1712;box-shadow:0 0 0 1px rgba(255,255,255,.2) inset,0 10px 40px -8px rgba(244,213,141,.55)}
+.btn.press{background:#d9b96c;color:#1a1712;transform:translateY(2px);box-shadow:0 4px 16px -6px rgba(244,213,141,.5)}
+.btn.bad{background:transparent;color:var(--err);box-shadow:inset 0 0 0 1.5px var(--err)}
+.num{font:400 64px/0.9 var(--serif);font-variant-numeric:lining-nums tabular-nums;color:var(--light)}
+.hint{font-size:13px;line-height:1.45;color:var(--txt-2)}
+.hint b{color:var(--txt);font-weight:600}
+/* ------------------------------------------------ desktop */
+.d-grid{position:relative;height:100%;display:grid;grid-template-columns:290px 1fr 262px;gap:28px;padding:34px 40px 30px}
+.d-left{display:flex;flex-direction:column}
+.d-left .ttl{font-size:64px;line-height:.95;margin:14px 0 10px}
+.d-left .lede{font-size:15px;line-height:1.5;color:var(--txt-2);max-width:260px}
+.d-left .rules{margin-top:auto}
+.d-left .rules h3{font:400 italic 22px/1 var(--serif);color:var(--txt);margin-bottom:12px}
+.d-mid{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.sill{width:330px;height:10px;border-radius:2px;background:linear-gradient(#3a3f48,#202328);margin-top:-4px;box-shadow:0 18px 40px -10px #000}
+.d-right{display:flex;flex-direction:column;gap:0}
+.d-right .top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--plomb)}
+.d-right .top .lbl{margin-top:8px}
+.d-right .clock{text-align:right}
+.d-right .clock .t{font:500 22px/1 var(--sans);font-variant-numeric:tabular-nums;color:var(--txt)}
+.d-right h3{font:400 italic 22px/1 var(--serif);margin:22px 0 14px}
+.d-right .hint{margin:18px 0 0}
+.d-right .act{margin-top:auto}
+.comm{display:flex;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--txt-3)}
+.comm b{color:var(--txt-2);font-weight:600}
+/* ------------------------------------------------ mobile */
+.m{padding:14px 16px 16px;height:100%;display:flex;flex-direction:column}
+.m-top{display:flex;justify-content:space-between;align-items:flex-end}
+.m-top .ttl{font-size:38px;line-height:.95;margin-top:8px}
+.m-top .r{text-align:right}
+.m-top .r .num{font-size:40px}
+.m-top .r .t{font:500 13px/1 var(--sans);color:var(--txt-2);margin-top:6px;font-variant-numeric:tabular-nums}
+.m-win{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:10px}
+.m-win .sill{width:232px;height:7px}
+.m-rules .rule{grid-template-columns:22px 1fr auto;padding:9px 0;gap:0 10px;align-items:center}
+.m-rules .rule .n{font-size:16px;grid-row:auto}
+.m-rules .rule p{font-size:13px;line-height:1.35}
+.m-rules{margin-top:12px}
+.m-tray{margin-top:12px}
+.m-tray .slot{padding:9px 0 8px;gap:6px}
+.m .act{margin-top:auto}
+.m .btn{height:50px}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="bh">
+    <div>
+      <h1>Vitrail — 01 · Nef</h1>
+      <p>Direction de départ, poussée au bout. Une nef dans le noir : charbon, plomb, un faisceau de jour qui entre en diagonale. Les quatre verres sont les seules couleurs de l'écran ; la lumière (or pâle) est l'unique accent de l'interface. Serif de titrage à fort contraste, sans pour tout le reste.</p>
+    </div>
+    <div class="meta">PAGE JEU · ÉTAT FIGÉ<br>5 / 8 PIÈCES POSÉES · EMERALD EN MAIN<br>V1 · 2026-11-18</div>
+  </div>
+
+  <div class="frames">
+    <div>
+      <div class="flabel">Desktop 1440 × 900 — post déplié</div>
+      <div class="fd">
+        [[FEED theme=dark]]
+        <div class="scrim"></div>
+        <div class="xp">
+          [[DBAR theme=dark]]
+          <div class="game nef">
+            <div class="pool" style="left:420px;top:600px;width:200px;height:120px;background:var(--cobalt)"></div>
+            <div class="pool" style="left:520px;top:640px;width:180px;height:110px;background:var(--ruby)"></div>
+            <div class="pool" style="left:460px;top:680px;width:200px;height:90px;background:var(--emerald)"></div>
+            <div class="d-grid">
+              <section class="d-left">
+                <div class="k">Window Nº 23 · Tuesday, 18 November</div>
+                <div class="ttl">The <i>Lily</i></div>
+                <p class="lede">Eight panes of glass. Three rules of light. Set every pane, then let the sun through.</p>
+                <div class="rules">
+                  <h3>Today's light</h3>
+                  <div class="rule"><span class="n">I</span><p>No two panes of the same glass share a lead line.</p><span class="stt ok">Holding</span></div>
+                  <div class="rule"><span class="n">II</span><p>The sunbeam meets <span class="sw" style="background:var(--cobalt)"></span>cobalt, then <span class="sw" style="background:var(--emerald)"></span>emerald, then <span class="sw" style="background:var(--ruby)"></span>ruby, then <span class="sw" style="background:var(--amber)"></span>amber.</p><span class="stt wait">3 of 4 <span class="beamtrack"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span></div>
+                  <div class="rule"><span class="n">III</span><p><span class="sw" style="background:var(--ruby)"></span>Ruby crowns the arch.</p><span class="stt ok">Holding</span></div>
+                </div>
+              </section>
+              <section class="d-mid">
+                [[WIN dir=nef w=388 state=play target=C:emerald]]
+                <div class="sill"></div>
+              </section>
+              <section class="d-right">
+                <div class="top">
+                  <div><div class="num">6</div><div class="k lbl">Day streak</div></div>
+                  <div class="clock"><div class="t">01:12</div><div class="k lbl">Elapsed</div></div>
+                </div>
+                <h3>Your glass</h3>
+                <div class="tray">
+                  <div class="slot gone">[[CHIP dir=nef tint=ruby w=44 state=gone]]<span class="nm">Ruby</span><span class="ct">set</span></div>
+                  <div class="slot">[[CHIP dir=nef tint=cobalt w=44]]<span class="nm">Cobalt</span><span class="ct">1 left</span></div>
+                  <div class="slot held">[[CHIP dir=nef tint=emerald w=44 state=held]]<span class="nm">Emerald</span><span class="ct">in hand</span></div>
+                  <div class="slot">[[CHIP dir=nef tint=amber w=44]]<span class="nm">Amber</span><span class="ct">1 left</span></div>
+                </div>
+                <p class="hint"><b>Emerald in hand.</b> Tap an empty pane to set it. Tap a set pane to lift it back.</p>
+                <div class="act">
+                  <div class="btn off">Let the light in · 3 panes left</div>
+                  <div class="comm"><span><b>2,841</b> windows lit today</span><span>median <b>2:47</b></span></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flabel">Mobile 390 × 844 — post déplié</div>
+      <div class="fm">
+        [[MTOP theme=dark]]
+        <div class="mgame nef">
+          <div class="pool" style="left:60px;top:430px;width:150px;height:80px;background:var(--cobalt)"></div>
+          <div class="pool" style="left:170px;top:440px;width:150px;height:80px;background:var(--ruby)"></div>
+          <div class="m">
+            <div class="m-top">
+              <div><div class="k">Nº 23 · Tue 18 Nov</div><div class="ttl">The <i>Lily</i></div></div>
+              <div class="r"><div class="num">6</div><div class="t">streak · 01:12</div></div>
+            </div>
+            <div class="m-win">
+              [[WIN dir=nef w=218 state=play target=C:emerald]]
+              <div class="sill"></div>
+            </div>
+            <div class="m-rules">
+              <div class="rule"><span class="n">I</span><p>No two panes of the same glass share a lead.</p><span class="stt ok"></span></div>
+              <div class="rule"><span class="n">II</span><p>Beam: <span class="sw" style="background:var(--cobalt)"></span>cobalt › <span class="sw" style="background:var(--emerald)"></span>emerald › <span class="sw" style="background:var(--ruby)"></span>ruby › <span class="sw" style="background:var(--amber)"></span>amber</p><span class="stt wait">3/4</span></div>
+              <div class="rule"><span class="n">III</span><p><span class="sw" style="background:var(--ruby)"></span>Ruby crowns the arch.</p><span class="stt ok"></span></div>
+            </div>
+            <div class="m-tray tray">
+              <div class="slot gone">[[CHIP dir=nef tint=ruby w=34 state=gone]]<span class="nm">Set</span></div>
+              <div class="slot">[[CHIP dir=nef tint=cobalt w=34]]<span class="nm">1 left</span></div>
+              <div class="slot held">[[CHIP dir=nef tint=emerald w=34 state=held]]<span class="nm">In hand</span></div>
+              <div class="slot">[[CHIP dir=nef tint=amber w=34]]<span class="nm">1 left</span></div>
+            </div>
+            <div class="act"><div class="btn off">Let the light in · 3 left</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="states">
+    <h2>États des composants</h2>
+    <div class="srow">
+      <div class="st nef" style="background:var(--charbon)">[[WIN dir=nef w=120 state=empty beam=1 marks=0]]<span class="cap">Vitrail du jour, vide<br>le faisceau seul</span></div>
+      <div class="st nef" style="background:var(--charbon)">[[WIN dir=nef w=120 state=conflict marks=0]]<span class="cap">Erreur : deux amber<br>sur un même plomb</span></div>
+      <div class="st nef" style="background:var(--charbon)">[[WIN dir=nef w=120 state=done marks=0]]<span class="cap">Juste : le vitrail<br>s'allume</span></div>
+      <div class="st nef" style="background:var(--charbon);width:300px">
+        <span class="cap">Pièce : posable · en main · épuisée</span>
+        <div class="tray" style="grid-template-columns:repeat(3,1fr);width:100%">
+          <div class="slot">[[CHIP dir=nef tint=cobalt w=40]]<span class="nm">Cobalt</span><span class="ct">2 left</span></div>
+          <div class="slot held">[[CHIP dir=nef tint=cobalt w=40 state=held]]<span class="nm">Cobalt</span><span class="ct">in hand</span></div>
+          <div class="slot gone">[[CHIP dir=nef tint=cobalt w=40 state=gone]]<span class="nm">Cobalt</span><span class="ct">set</span></div>
+        </div>
+      </div>
+      <div class="st nef" style="background:var(--charbon);width:300px">
+        <span class="cap">Contrainte : tient · en cours · cassée</span>
+        <span class="stt ok">Holding</span><span class="stt wait">3 of 4 <span class="beamtrack"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span><span class="stt bad">Broken · lead 7–8</span>
+      </div>
+      <div class="st nef" style="background:var(--charbon);width:300px">
+        <span class="cap">Bouton : attente · prêt · appuyé · refus</span>
+        <div class="btn off">Let the light in · 3 panes left</div>
+        <div class="btn on">Let the light in</div>
+        <div class="btn press">Let the light in</div>
+        <div class="btn bad">Not yet — rule I is broken</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

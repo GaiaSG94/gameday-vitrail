@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrail · V1 · 02 Atelier</title>
+<style>
+[[FONTS names=fraunces,sg4,sg5,sg7,jbm]]
+[[BASECSS]]
+:root{
+  --paper:#ece6da; --sheet:#f7f3ea; --table:#fffdf7; --ink:#2b2925; --pencil:#8d877b; --line:#d9d1c2;
+  --ruby:#d81f43; --cobalt:#2c5fe0; --emerald:#12a476; --amber:#f6b326;
+  --ok:#2b2925; --err:#d4352a;
+  --serif:Fraunces,Georgia,serif; --sans:'Space Grotesk',system-ui,sans-serif;
+}
+body{background:#d8d2c6;color:var(--ink);font-family:var(--sans)}
+.bh h1{font-family:var(--serif);font-weight:600;font-size:36px}
+.atl{position:relative;overflow:hidden;background:var(--paper);color:var(--ink)}
+.k{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--pencil)}
+.ttl{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;line-height:.95}
+/* table lumineuse */
+.lt{position:relative;border-radius:18px;background:var(--table);
+  box-shadow:0 0 0 1px #e6dfd1,0 0 60px 6px rgba(255,248,220,.9),0 30px 60px -30px rgba(80,60,20,.35);
+  display:flex;align-items:center;justify-content:center}
+.lt::after{content:"";position:absolute;inset:14px;border-radius:10px;pointer-events:none;
+  background:
+   linear-gradient(var(--line),var(--line)) left 0 top 0/18px 1.5px no-repeat,
+   linear-gradient(var(--line),var(--line)) left 0 top 0/1.5px 18px no-repeat,
+   linear-gradient(var(--line),var(--line)) right 0 top 0/18px 1.5px no-repeat,
+   linear-gradient(var(--line),var(--line)) right 0 top 0/1.5px 18px no-repeat,
+   linear-gradient(var(--line),var(--line)) left 0 bottom 0/18px 1.5px no-repeat,
+   linear-gradient(var(--line),var(--line)) left 0 bottom 0/1.5px 18px no-repeat,
+   linear-gradient(var(--line),var(--line)) right 0 bottom 0/18px 1.5px no-repeat,
+   linear-gradient(var(--line),var(--line)) right 0 bottom 0/1.5px 18px no-repeat}
+.lt .tag{position:absolute;left:28px;bottom:24px;font:500 11px/1.5 'JetBrains Mono',ui-monospace,monospace;color:var(--pencil);letter-spacing:.04em}
+.lt .tag.r{left:auto;right:28px;text-align:right}
+/* fiche */
+.sheet{display:flex;flex-direction:column}
+.row{display:flex;justify-content:space-between;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:15px;background:var(--sheet);box-shadow:inset 0 0 0 1px var(--line);font:500 13px/1 var(--sans);font-variant-numeric:tabular-nums}
+.pill b{font-weight:700}
+.flame{width:10px;height:10px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--ink)}
+.rules{list-style:none;display:flex;flex-direction:column}
+.rules li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-top:1px dashed var(--line);align-items:start}
+.rules li:last-child{border-bottom:1px dashed var(--line)}
+.rules p{font-size:16px;line-height:1.4}
+.rules .s{font:500 12px/1 var(--sans);color:var(--pencil);margin-top:6px;display:flex;gap:6px;align-items:center}
+.tick{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px var(--pencil);color:var(--pencil);font:600 12px/1 var(--sans)}
+.tick.ok{background:var(--ink);box-shadow:none;color:#fff}
+.tick.bad{background:var(--err);box-shadow:none;color:#fff}
+.g{display:inline-block;width:11px;height:11px;border-radius:3px;vertical-align:-1px;margin-right:3px;box-shadow:0 0 6px currentColor}
+.seq{display:inline-flex;gap:4px}.seq i{width:16px;height:5px;border-radius:3px;background:var(--line)}
+.seq i.on{background:var(--ink)}
+/* tapis de coupe */
+.mat{border-radius:14px;padding:14px;background-color:#e2dccf;
+  background-image:linear-gradient(rgba(43,41,37,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(43,41,37,.07) 1px,transparent 1px);
+  background-size:20px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cut{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0 8px;border-radius:10px}
+.cut .nm{font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.cut .ct{font:500 11px/1 var(--sans);color:var(--pencil)}
+.cut.held{background:var(--table);box-shadow:0 0 0 2px var(--ink),0 14px 26px -12px rgba(18,164,118,.8);transform:translateY(-6px) rotate(-2deg)}
+.cut.gone{opacity:.55}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:14px;font:700 16px/1 var(--sans);width:100%}
+.btn.off{background:transparent;color:var(--pencil);box-shadow:inset 0 0 0 1.5px var(--pencil)}
+.btn.on{background:var(--ink);color:#fffdf7;box-shadow:0 5px 0 #000,0 14px 30px -12px rgba(0,0,0,.5)}
+.btn.press{background:var(--ink);color:#fffdf7;transform:translateY(4px);box-shadow:0 1px 0 #000}
+.btn.bad{background:transparent;color:var(--err);box-shadow:inset 0 0 0 1.5px var(--err)}
+.hint{font-size:14px;line-height:1.45;color:#5b574f}.hint b{color:var(--ink)}
+.comm{display:flex;justify-content:space-between;font-size:12.5px;color:var(--pencil)}.comm b{color:var(--ink);font-weight:700}
+/* desktop */
+.d{display:grid;grid-template-columns:540px 1fr;gap:40px;height:100%;padding:32px 40px 32px 32px}
+.d .lt{height:100%}
+.d .sheet .ttl{font-size:68px;margin:16px 0 8px}
+.d .sheet .lede{font-size:16px;line-height:1.45;color:#5b574f;max-width:380px}
+.d .sheet h3{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;margin:24px 0 10px}
+.d .act{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+/* mobile */
+.m{height:100%;display:flex;flex-direction:column;padding:12px 14px 14px}
+.m .lt{height:410px;flex:none}
+.m .row{margin-top:12px}
+.m .ttl{font-size:34px}
+.m .rules li{padding:8px 0;grid-template-columns:22px 1fr;gap:10px;align-items:center}
+.m .rules p{font-size:13px;line-height:1.3}
+.m .tick{width:22px;height:22px;font-size:11px}
+.m .mat{margin-top:10px;padding:8px;gap:6px}
+.m .cut{padding:6px 0 6px;gap:4px}
+.m .act{margin-top:auto}
+.m .btn{height:50px}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="bh">
+    <div>
+      <h1>Vitrail — 02 · Atelier</h1>
+      <p>S'écarte du brief : on quitte la cathédrale pour l'atelier du verrier. Le vitrail est un carton dessiné au crayon sur une table lumineuse ; chaque pièce posée reçoit son plomb et s'allume par en dessous. La couleur n'existe que là où le joueur l'a mise. Une seule encre graphite pour toute l'interface.</p>
+    </div>
+    <div class="meta">PAGE JEU · ÉTAT FIGÉ<br>5 / 8 PIÈCES POSÉES · EMERALD EN MAIN<br>V1 · 2026-11-18</div>
+  </div>
+
+  <div class="frames">
+    <div>
+      <div class="flabel">Desktop 1440 × 900 — post déplié</div>
+      <div class="fd">
+        [[FEED theme=light]]
+        <div class="scrim" style="background:rgba(30,26,20,.45)"></div>
+        <div class="xp">
+          [[DBAR theme=light]]
+          <div class="game atl">
+            <div class="d">
+              <div class="lt">
+                [[WIN dir=atelier w=356 state=play target=C:emerald nums=1]]
+                <span class="tag">CARTOON Nº 23 · 1:1</span>
+                <span class="tag r">8 PANES · 4 GLASSES</span>
+              </div>
+              <section class="sheet">
+                <div class="row">
+                  <span class="k">Tuesday, 18 November</span>
+                  <span style="display:flex;gap:8px"><span class="pill"><i class="flame"></i><b>6</b> days</span><span class="pill">01:12</span></span>
+                </div>
+                <div class="ttl">The Lily</div>
+                <p class="lede">Lay the eight panes on the cartoon. When the light obeys all three rules, the window is yours.</p>
+                <h3>Today's light</h3>
+                <ol class="rules">
+                  <li><span class="tick ok">✓</span><div><p>No two panes of the same glass share a lead line.</p></div></li>
+                  <li><span class="tick">2</span><div><p>The sunbeam meets <span class="g" style="background:var(--cobalt);color:var(--cobalt)"></span>cobalt, then <span class="g" style="background:var(--emerald);color:var(--emerald)"></span>emerald, then <span class="g" style="background:var(--ruby);color:var(--ruby)"></span>ruby, then <span class="g" style="background:var(--amber);color:var(--amber)"></span>amber.</p><div class="s"><span class="seq"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>3 of 4 lit</div></div></li>
+                  <li><span class="tick ok">✓</span><div><p><span class="g" style="background:var(--ruby);color:var(--ruby)"></span>Ruby crowns the arch.</p></div></li>
+                </ol>
+                <h3>Cut glass</h3>
+                <div class="mat">
+                  <div class="cut gone">[[CHIP dir=atelier tint=ruby w=46 state=gone]]<span class="nm">Ruby</span><span class="ct">all set</span></div>
+                  <div class="cut">[[CHIP dir=atelier tint=cobalt w=46]]<span class="nm">Cobalt</span><span class="ct">1 left</span></div>
+                  <div class="cut held">[[CHIP dir=atelier tint=emerald w=46 state=held]]<span class="nm">Emerald</span><span class="ct">in hand</span></div>
+                  <div class="cut">[[CHIP dir=atelier tint=amber w=46]]<span class="nm">Amber</span><span class="ct">1 left</span></div>
+                </div>
+                <div class="act">
+                  <p class="hint"><b>Emerald in hand</b> — tap pane 3, 7 or 8 on the cartoon.</p>
+                  <div class="btn off">Let the light in · 3 panes to go</div>
+                  <div class="comm"><span><b>2,841</b> windows lit today</span><span>median time <b>2:47</b></span></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="flabel">Mobile 390 × 844 — post déplié</div>
+      <div class="fm">
+        [[MTOP theme=light]]
+        <div class="mgame atl">
+          <div class="m">
+            <div class="lt">
+              [[WIN dir=atelier w=226 state=play target=C:emerald nums=1]]
+                          </div>
+            <div class="row">
+              <div class="ttl">The Lily</div>
+              <span style="display:flex;gap:6px"><span class="pill"><i class="flame"></i><b>6</b></span><span class="pill">01:12</span></span>
+            </div>
+            <ol class="rules" style="margin-top:8px">
+              <li><span class="tick ok">✓</span><p>No two panes of the same glass share a lead.</p></li>
+              <li><span class="tick">2</span><p>Beam: <span class="g" style="background:var(--cobalt);color:var(--cobalt)"></span>cobalt, <span class="g" style="background:var(--emerald);color:var(--emerald)"></span>emerald, <span class="g" style="background:var(--ruby);color:var(--ruby)"></span>ruby, <span class="g" style="background:var(--amber);color:var(--amber)"></span>amber · 3/4</p></li>
+              <li><span class="tick ok">✓</span><p><span class="g" style="background:var(--ruby);color:var(--ruby)"></span>Ruby crowns the arch.</p></li>
+            </ol>
+            <div class="mat">
+              <div class="cut gone">[[CHIP dir=atelier tint=ruby w=32 state=gone]]<span class="ct">set</span></div>
+              <div class="cut">[[CHIP dir=atelier tint=cobalt w=32]]<span class="ct">1 left</span></div>
+              <div class="cut held">[[CHIP dir=atelier tint=emerald w=32 state=held]]<span class="ct" style="color:var(--ink)">in hand</span></div>
+              <div class="cut">[[CHIP dir=atelier tint=amber w=32]]<span class="ct">1 left</span></div>
+            </div>
+            <div class="act"><div class="btn off">Let the light in · 3 to go</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="states">
+    <h2>États des composants</h2>
+    <div class="srow">
+      <div class="st atl" style="background:var(--table)">[[WIN dir=atelier w=120 state=empty marks=0 nums=1]]<span class="cap">Carton vierge<br>crayon, numéros</span></div>
+      <div class="st atl" style="background:var(--table)">[[WIN dir=atelier w=120 state=three marks=0]]<span class="cap">Le plomb apparaît<br>pièce par pièce</span></div>
+      <div class="st atl" style="background:var(--table)">[[WIN dir=atelier w=120 state=conflict marks=0]]<span class="cap">Erreur : deux amber<br>sur un même plomb</span></div>
+      <div class="st atl" style="background:var(--table)">[[WIN dir=atelier w=120 state=done marks=0]]<span class="cap">Juste : la table<br>s'allume en entier</span></div>
+      <div class="st atl" style="background:var(--sheet);width:290px">
+        <span class="cap">Pièce : posable · en main · épuisée</span>
+        <div class="mat" style="grid-template-columns:repeat(3,1fr);width:100%">
+          <div class="cut">[[CHIP dir=atelier tint=cobalt w=40]]<span class="nm">Cobalt</span><span class="ct">2 left</span></div>
+          <div class="cut held">[[CHIP dir=atelier tint=cobalt w=40 state=held]]<span class="nm">Cobalt</span><span class="ct">in hand</span></div>
+          <div class="cut gone">[[CHIP dir=atelier tint=cobalt w=40 state=gone]]<span class="nm">Cobalt</span><span class="ct">all set</span></div>
+        </div>
+      </div>
+      <div class="st atl" style="background:var(--sheet);width:250px">
+        <span class="cap">Contrainte : en cours · tient · cassée</span>
+        <span style="display:flex;gap:10px;align-items:center"><span class="tick">2</span><span class="seq"><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+        <span style="display:flex;gap:10px;align-items:center"><span class="tick ok">✓</span><span class="hint">Holding</span></span>
+        <span style="display:flex;gap:10px;align-items:center"><span class="tick bad">!</span><span class="hint" style="color:var(--err)">Broken — panes 7 and 8</span></span>
+      </div>
+      <div class="st atl" style="background:var(--sheet);width:300px">
+        <span class="cap">Bouton : attente · prêt · appuyé · refus</span>
+        <div class="btn off">Let the light in · 3 panes to go</div>
+        <div class="btn on">Let the light in</div>
+        <div class="btn press">Let the light in</div>
+        <div class="btn bad">Not yet — rule 1 is broken</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrail · V1 · 03 Nocturne</title>
+<style>
+[[FONTS names=archivo,jbm]]
+[[BASECSS]]
+:root{
+  --night:#161b28; --wall:#1d2332; --slate:#383e4e; --frost:#9aa1b3; --mist:#c9cfdc;
+  --ruby:#e2314f; --cobalt:#3d6bff; --emerald:#1fc28a; --amber:#ffb42e;
+  --seam:#ffd59e;            /* seule couleur d'accent : la lumiere des joints */
+  --err:#ff5a4e;
+  --cond:Archivo,system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+body{background:#0b0d13;color:var(--mist);font-family:var(--mono)}
+.bh h1{font-family:var(--cond);font-weight:900;font-stretch:62%;font-size:44px;text-transform:uppercase;letter-spacing:.01em}
+.noc{position:relative;overflow:hidden;color:var(--mist);
+  background:radial-gradient(60% 50% at 50% 42%,#262d40 0%,transparent 70%),linear-gradient(#121622,#1b2130 62%,#232a3b 62.2%,#1a1f2c)}
+.noc::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .85 0 0 0 0 1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.spill{position:absolute;border-radius:50%;filter:blur(30px);pointer-events:none}
+.ghost{position:absolute;font:900 360px/0.8 var(--cond);font-stretch:62%;color:rgba(201,207,220,.035);letter-spacing:-.02em;pointer-events:none;white-space:nowrap}
+.mc{font:500 10.5px/1.6 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--frost)}
+.mc b{color:var(--mist);font-weight:600}
+.big{font:900 64px/0.85 var(--cond);font-stretch:62%;text-transform:uppercase;color:#eef1f7;letter-spacing:.005em}
+.num{font:900 72px/0.8 var(--cond);font-stretch:62%;color:var(--seam);font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(255,213,158,.35)}
+.rl{display:grid;grid-template-columns:34px 1fr;gap:0 10px;padding:11px 0;border-top:1px solid rgba(154,161,179,.16)}
+.rl:last-child{border-bottom:1px solid rgba(154,161,179,.16)}
+.rl .i{font:600 11px/1.6 var(--mono);color:var(--frost)}
+.rl p{font:400 12.5px/1.55 var(--mono);color:var(--mist)}
+.rl .s{grid-column:2;font:600 10.5px/1 var(--mono);letter-spacing:.1em;margin-top:6px}
+.s.ok{color:var(--seam)} .s.wait{color:var(--frost)} .s.bad{color:var(--err)}
+.dia{display:inline-block;width:8px;height:8px;transform:rotate(45deg);margin:0 5px 1px 2px;box-shadow:0 0 8px currentColor}
+.dock{display:flex;align-items:center;gap:10px;padding:10px;border-radius:18px;background:rgba(10,13,20,.55);box-shadow:inset 0 0 0 1px rgba(154,161,179,.18);backdrop-filter:blur(6px)}
+.pc{position:relative;width:76px;height:70px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.pc .ct{font:600 9.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--frost)}
+.pc.held{background:rgba(255,213,158,.08);box-shadow:inset 0 0 0 1.5px var(--seam);transform:translateY(-8px)}
+.pc.held .ct{color:var(--seam)}
+.pc.gone .ct{color:#5d6478}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:12px;font:700 13px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.btn.off{color:var(--frost);box-shadow:inset 0 0 0 1px rgba(154,161,179,.35)}
+.btn.on{background:var(--seam);color:#1a140b;box-shadow:0 0 40px -4px rgba(255,213,158,.6)}
+.btn.press{background:#e8bd83;color:#1a140b;transform:translateY(2px);box-shadow:0 0 18px -4px rgba(255,213,158,.5)}
+.btn.bad{color:var(--err);box-shadow:inset 0 0 0 1.5px var(--err)}
+/* desktop */
+.d{position:absolute;inset:0}
+.d .win-at{position:absolute;left:50%;top:44px;transform:translateX(-50%)}
+.d .tl{position:absolute;left:36px;top:32px}
+.d .tr{position:absolute;right:36px;top:32px;text-align:right}
+.d .rules{position:absolute;left:36px;bottom:132px;width:262px}
+.d .br{position:absolute;right:36px;bottom:132px;text-align:right;width:240px}
+.d .dockwrap{position:absolute;left:50%;bottom:24px;transform:translateX(-50%)}
+/* mobile */
+.m{position:absolute;inset:0;padding:14px 16px 16px;display:flex;flex-direction:column}
+.m .top{display:flex;justify-content:space-between;align-items:flex-start}
+.m .big{font-size:42px}
+.m .num{font-size:48px}
+.m .w{display:flex;justify-content:center;margin-top:4px}
+.m .rl{padding:7px 0;grid-template-columns:26px 1fr auto;align-items:center}
+.m .rl p{font-size:11.5px;line-height:1.4}
+.m .rl .s{grid-column:auto;margin:0}
+.m .dock{margin-top:auto;gap:6px;padding:8px}
+.m .pc{width:auto;flex:1;height:58px}
+</style>
+</head>
+<body>
+<div class="board">
+  <div class="bh">
+    <div>
+      <h1>Vitrail — 03 · Nocturne</h1>
+      <p>Autre point de vue : on regarde le vitrail du dehors, la nuit. Le monde est monochrome, ardoise et givre ; la seule chaleur sort par les joints du plomb, qui brillent quand le verre est posé, et la couleur coule sur le sol. Pas de serif : une condensée très grasse pour les titres, une mono pour l'interface, rangée dans les coins.</p>
+    </div>
+    <div class="meta">PAGE JEU · ÉTAT FIGÉ<br>5 / 8 PIÈCES POSÉES · EMERALD EN MAIN<br>V1 · 2026-11-18</div>
+  </div>
+
+  <div class="frames">
+    <div>
+      <div class="flabel">Desktop 1440 × 900 — post déplié</div>
+      <div class="fd">
+        [[FEED theme=dark]]
+        <div class="scrim"></div>
+        <div class="xp">
+          [[DBAR theme=dark]]
+          <div class="game noc">
+            <div class="ghost" style="left:130px;top:150px">Nº23</div>
+            <div class="spill" style="left:390px;top:560px;width:150px;height:70px;background:var(--cobalt);opacity:.35"></div>
+            <div class="spill" style="left:470px;top:580px;width:130px;height:70px;background:var(--emerald);opacity:.3"></div>
+            <div class="spill" style="left:520px;top:560px;width:140px;height:70px;background:var(--ruby);opacity:.3"></div>
+            <div class="d">
+              <div class="win-at">[[WIN dir=nocturne w=330 state=play target=C:emerald]]</div>
+              <div class="tl">
+                <div class="mc">Vitrail · <b>Window Nº 23</b><br>Tuesday 18 November</div>
+                <div class="big" style="margin-top:14px">The<br>Lily</div>
+              </div>
+              <div class="tr">
+                <div class="mc">Streak</div>
+                <div class="num" style="margin-top:6px">06</div>
+                <div class="mc" style="margin-top:12px">Elapsed <b>01:12</b></div>
+              </div>
+              <div class="rules">
+                <div class="mc" style="margin-bottom:8px">Rules of light · <b>3</b></div>
+                <div class="rl"><span class="i">[I]</span><p>No two panes of the same glass share a lead line.</p><span class="s ok">● HOLDING</span></div>
+                <div class="rl"><span class="i">[II]</span><p>Sunbeam order: <span class="dia" style="background:var(--cobalt);color:var(--cobalt)"></span>cobalt <span class="dia" style="background:var(--emerald);color:var(--emerald)"></span>emerald <span class="dia" style="background:var(--ruby);color:var(--ruby)"></span>ruby <span class="dia" style="background:var(--amber);color:var(--amber)"></span>amber</p><span class="s wait">○ 3 / 4 LIT</span></div>
+                <div class="rl"><span class="i">[III]</span><p><span class="dia" style="background:var(--ruby);color:var(--ruby)"></span>Ruby crowns the arch.</p><span class="s ok">● HOLDING</span></div>
+              </div>
+              <div class="br">
+                <div class="mc"><b>2,841</b> windows lit today<br>median <b>2:47</b></div>
+                <div class="mc" style="margin-top:14px;color:#6d7488">Emerald in hand —<br>tap an empty pane</div>
+              </div>
+              <div class="dockwrap"><div class="dock">
+            <div class="pc gone">[[CHIP dir=nocturne tint=ruby w=36 state=gone]]<span class="ct">Set</span></div>
+            <div class="pc">[[CHIP dir=nocturne tint=cobalt w=36]]<span class="ct">Cobalt ×1</span></div>
+            <div class="pc held">[[CHIP dir=nocturne tint=emerald w=36 state=held]]<span class="ct">In hand</span></div>
+            <div class="pc">[[CHIP dir=nocturne tint=amber w=36]]<span class="ct">Amber ×1</span></div>
+            <div class="btn off" style="margin-left:6px">Let the light in · 3</div>
+          </div></div>
+            </div>
+          </div>
+        </div>
+</div>
+    </div>
+
+    <div>
+      <div class="flabel">Mobile 390 × 844 — post déplié</div>
+      <div class="fm">
+        [[MTOP theme=dark]]
+        <div class="mgame noc">
+          <div class="ghost" style="font-size:220px;left:-6px;top:150px">Nº23</div>
+          <div class="spill" style="left:90px;top:440px;width:110px;height:50px;background:var(--cobalt);opacity:.35"></div>
+          <div class="spill" style="left:180px;top:445px;width:110px;height:50px;background:var(--ruby);opacity:.3"></div>
+          <div class="m">
+            <div class="top">
+              <div><div class="mc">Nº 23 · Tue 18 Nov</div><div class="big" style="margin-top:6px">The Lily</div></div>
+              <div style="text-align:right"><div class="mc">Streak</div><div class="num">06</div><div class="mc">01:12</div></div>
+            </div>
+            <div class="w">[[WIN dir=nocturne w=236 state=play target=C:emerald]]</div>
+            <div style="margin-top:6px">
+              <div class="rl"><span class="i">[I]</span><p>Same glass never shares a lead.</p><span class="s ok">●</span></div>
+              <div class="rl"><span class="i">[II]</span><p>Beam: <span class="dia" style="background:var(--cobalt);color:var(--cobalt)"></span><span class="dia" style="background:var(--emerald);color:var(--emerald)"></span><span class="dia" style="background:var(--ruby);color:var(--ruby)"></span><span class="dia" style="background:var(--amber);color:var(--amber)"></span> in that order</p><span class="s wait">3/4</span></div>
+              <div class="rl"><span class="i">[III]</span><p>Ruby crowns the arch.</p><span class="s ok">●</span></div>
+            </div>
+            <div class="dock" style="margin-top:12px">
+              <div class="pc gone">[[CHIP dir=nocturne tint=ruby w=28 state=gone]]<span class="ct">Set</span></div>
+              <div class="pc">[[CHIP dir=nocturne tint=cobalt w=28]]<span class="ct">×1</span></div>
+              <div class="pc held">[[CHIP dir=nocturne tint=emerald w=28 state=held]]<span class="ct">Hand</span></div>
+              <div class="pc">[[CHIP dir=nocturne tint=amber w=28]]<span class="ct">×1</span></div>
+            </div>
+            <div class="btn off" style="margin-top:10px;height:48px">Let the light in · 3 left</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="states">
+    <h2>États des composants</h2>
+    <div class="srow">
+      <div class="st noc">[[WIN dir=nocturne w=120 state=empty marks=0]]<span class="cap">Vitrail éteint<br>joints froids</span></div>
+      <div class="st noc">[[WIN dir=nocturne w=120 state=three marks=0]]<span class="cap">Chaque pièce posée<br>allume ses joints</span></div>
+      <div class="st noc">[[WIN dir=nocturne w=120 state=conflict marks=0]]<span class="cap">Erreur : deux amber<br>sur un même plomb</span></div>
+      <div class="st noc">[[WIN dir=nocturne w=120 state=done marks=0]]<span class="cap">Juste : la fenêtre<br>brûle dans la nuit</span></div>
+      <div class="st noc" style="width:290px">
+        <span class="cap">Pièce : posable · en main · épuisée</span>
+        <div class="dock">
+          <div class="pc">[[CHIP dir=nocturne tint=cobalt w=34]]<span class="ct">×2</span></div>
+          <div class="pc held">[[CHIP dir=nocturne tint=cobalt w=34 state=held]]<span class="ct">Hand</span></div>
+          <div class="pc gone">[[CHIP dir=nocturne tint=cobalt w=34 state=gone]]<span class="ct">Set</span></div>
+        </div>
+      </div>
+      <div class="st noc" style="width:230px">
+        <span class="cap">Contrainte</span>
+        <span class="s ok mc" style="color:var(--seam)">● Holding</span>
+        <span class="s wait mc">○ 3 / 4 lit</span>
+        <span class="s bad mc" style="color:var(--err)">✕ Broken · lead 7–8</span>
+      </div>
+      <div class="st noc" style="width:300px">
+        <span class="cap">Bouton : attente · prêt · appuyé · refus</span>
+        <div class="btn off">Let the light in · 3</div>
+        <div class="btn on">Let the light in</div>
+        <div class="btn press">Let the light in</div>
+        <div class="btn bad">Rule I is broken</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
